@@ -44,12 +44,12 @@
 				<div class="col-12 col-md-6 col-lg-4 mb-5">
 					<div class="card">
 						<div class="card-header bg-black">
-							<h4 class="card-title text-white">To do (<span id="to-do-tasks-count">5</span>)</h4>
+							<h4 class="card-title text-white">To do (<span id="to-do-tasks-count"></span>)</h4>
 
 						</div>
 						<div class="card-body" id="to-do-tasks">
 							<!-- TO DO TASKS HERE -->
-							<button class="col-sm-12 border-0 border-bottom bg-transparent d-flex align-items-start pb-3 todo-task">
+							<!--<button class="col-sm-12 border-0 border-bottom bg-transparent d-flex align-items-start pb-3 todo-task">
 								<div class="mt-1">
 									<i class="far fa-question-circle text-success"></i> 
 								</div>
@@ -137,7 +137,7 @@
 									</div>
 									<a class="btn btn-success btn-lg mt-2 start-btn">start task</a>
 								</div>
-							</button>
+							</button>-->
 						</div>
 					</div>
 				</div>
@@ -149,7 +149,7 @@
 						</div>
 						<div class="card-body" id="in-progress-tasks">
 							<!-- IN PROGRESS TASKS HERE -->
-							<button class="col-sm-12 border-0 border-bottom bg-transparent d-flex align-items-start pb-3 ">
+							<!--<button class="col-sm-12 border-0 border-bottom bg-transparent d-flex align-items-start pb-3 ">
 								<div class="mt-1">
 									<i class="bx bx-loader-alt text-success"></i> 
 								</div>
@@ -216,7 +216,7 @@
 									</div>
 									<a class="btn btn-success btn-lg mt-2">finish task</a>
 								</div>
-							</button>
+							</button>-->
 						</div>
 					</div>
 				</div>
@@ -228,7 +228,7 @@
 						</div>
 						<div class="card-body" id="done-tasks">
 							<!-- DONE TASKS HERE -->
-							<button class="col-sm-12 border-0 border-bottom bg-transparent d-flex align-items-start pb-3">
+							<!--<button class="col-sm-12 border-0 border-bottom bg-transparent d-flex align-items-start pb-3">
 								<div class="mt-1">
 									<i class="bi bi-check-circle text-success"></i> 
 								</div>
@@ -291,7 +291,7 @@
 										<span class="btn btn-light text-dark ms-1">Bug</span>
 									</div>
 								</div>
-							</button>
+							</button>-->
 						</div>
 					</div>
 				</div>
@@ -323,7 +323,7 @@
 				<div class="mb-3">
 					<label class="form-check-label" for="radio-type">Type</label>
 					<div class="d-flex radio-div ms-5">
-						<input type="radio" name="radio-type" id="radio-type" value="Feature">
+						<input type="radio" name="radio-type" id="radio-type" value="Feature" checked>
 						<span class="ms-2">Feature</span>
 					</div>
 					<div class="d-flex radio-div ms-5">
@@ -345,7 +345,7 @@
 					<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="status-select">
 						<option selected>Please select</option>
 						<option value="To do">To do</option>
-						<option value="In progress">In progress</option>
+						<option value="In Progress">In progress</option>
 						<option value="Done">Done</option>
 					  </select>
 				</div>
@@ -362,6 +362,68 @@
 			<div class="modal-footer">
 			  <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
 			  <button type="submit" class="btn btn-primary" id="save-form" data-bs-dismiss="modal">Save</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	  <!--Modify Modal-->
+	  <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+			  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+			  <form id="mod-form">
+				<div class="mb-3">
+				  <label for="recipient-name" class="col-form-label">Title:</label>
+				  <input type="text" class="form-control" id="modified-name">
+				</div>
+				<div class="mb-3">
+					<label class="form-check-label" for="radio-type">Type</label>
+					<div class="d-flex radio-div ms-5">
+						<input type="radio" name="radio-type" id="modified-type" value="Feature" checked>
+						<span class="ms-2">Feature</span>
+					</div>
+					<div class="d-flex radio-div ms-5">
+						<input type="radio" name="radio-type" id="modified-type" value="Bug">
+						<span  class="ms-2">Bug</span>
+					</div>
+				</div>
+				<div class="mb-3">
+					<label for="priority-select" class="col-form-label">Priority:</label>
+					<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="modified-select">
+						<option selected>Please select</option>
+						<option value="High">High</option>
+						<option value="Medium">Medium</option>
+						<option value="Low">Low</option>
+					  </select>
+				</div>
+				<div class="mb-3">
+					<label for="status-select" class="col-form-label">Status:</label>
+					<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="modifiedStatus-select">
+						<option selected>Please select</option>
+						<option value="To do">To do</option>
+						<option value="In Progress">In progress</option>
+						<option value="Done">Done</option>
+					  </select>
+				</div>
+				<div class="mb-3">
+					<label for="date-calender" class="col-form-label">Date:</label>
+					<input type="date" class="form-control" id="modifiedDate-calender">
+				  </div>
+				<div class="mb-3">
+				  <label for="message-text" class="col-form-label">Message:</label>
+				  <textarea class="form-control" id="modifiedMessage-text"></textarea>
+				</div>
+			  </form>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button>
+			  <button type="submit" class="btn btn-success" id="editBtn" data-bs-dismiss="modal">Edit</button>
+			  <button type="submit" class="btn btn-danger" id="deleteBtn" data-bs-dismiss="modal">Delete</button>
 			</div>
 		  </div>
 		</div>
