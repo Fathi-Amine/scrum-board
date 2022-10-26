@@ -335,6 +335,7 @@
 					<label for="priority-select" class="col-form-label">Priority:</label>
 					<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="priority-select">
 						<option selected>Please select</option>
+						<option value="Critical">Critical</option>
 						<option value="High">High</option>
 						<option value="Medium">Medium</option>
 						<option value="Low">Low</option>
@@ -384,11 +385,11 @@
 				<div class="mb-3">
 					<label class="form-check-label" for="radio-type">Type</label>
 					<div class="d-flex radio-div ms-5">
-						<input type="radio" name="radio-type" id="modified-type" value="Feature" checked>
+						<input type="radio" name="radio-type" class="modified-types" id="feature-type" value="Feature" checked>
 						<span class="ms-2">Feature</span>
 					</div>
 					<div class="d-flex radio-div ms-5">
-						<input type="radio" name="radio-type" id="modified-type" value="Bug">
+						<input type="radio" name="radio-type" class="modified-types" id="bug-type" value="Bug">
 						<span  class="ms-2">Bug</span>
 					</div>
 				</div>

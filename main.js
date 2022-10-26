@@ -12,20 +12,25 @@ const deleteBtn = document.querySelector('#deleteBtn');
 const todoColumn = document.querySelector('#to-do-tasks');
 const inProgressColumn = document.querySelector('#in-progress-tasks');
 const doneColumn = document.querySelector('#done-tasks');
-let toDoCounter = document.getElementById('to-do-tasks-count');
-let inProgressCounter = document.getElementById('in-progress-tasks-count');
-let doneCounter = document.getElementById('done-tasks-count');
-let ind;
-let c1 = 0;
-let c2 = 0;
-let c3 = 0;
+var toDoCounter = document.getElementById('to-do-tasks-count');
+var inProgressCounter = document.getElementById('in-progress-tasks-count');
+var doneCounter = document.getElementById('done-tasks-count');
+var modifiedTitle = document.querySelector('#modified-name');
+var modifiedOptions = document.querySelector('#modified-select');
+var modifiedStatus = document.querySelector('#modifiedStatus-select');
+var modifiedDate = document.querySelector('#modifiedDate-calender');
+var modifiedTextArea = document.querySelector('#modifiedMessage-text');
+var ind;
+var c1 = 0;
+var c2 = 0;
+var c3 = 0;
 
 const tasks = [
 	{
 		title: "Keep all the updated requirements in one place",
 		date: "2022-10-08",
 		priority: "High",
-		type: "feature",
+		type: "Feature",
 		status: "To do",
 		description: "There is hardly anything more frustrating than having to look for current requirements in tens of comments under the actual description or having to decide which commenter is actually authorized to change the requirements. The goal here is to keep all the up-to-date requirements and details in the main/primary description of a task. Even though the information in comments may affect initial criteria, just update this primary description accordingly."
 	},
@@ -33,7 +38,7 @@ const tasks = [
 		title: "Consider creating an acceptance criteria list",
 		date: "2022-10-08",
 		priority: "High",
-		type: "feature",
+		type: "Feature",
 		status: "To do",
 		description: `Descriptive requirements are very helpful when it comes to understanding the context of a problem, yet finally it is good to precisely specify what is expected. Thus the developer will not have to look for the actual requirements in a long, descriptive text but he will be able to easily get to the essence. One might find that sometimes — when acceptance criteria are well defined — there is little or no need for any additional information. Example:
 		a) User navigates to “/accounts” and clicks on red download CSV button
@@ -45,7 +50,7 @@ const tasks = [
 		title: "Provide examples, credentials, etc",
 		date: "2022-10-08",
 		priority: "High",
-		type: "feature",
+		type: "Feature",
 		status: "To do",
 		description: "If the expectation is to process or generate some file — attach an example of such a file. If the goal is to integrate what is being developed with some service, ensure your devs have access to this service and its documentation. This list could go on and on — the bottom line is — if there is something that our developer might make use of, try to foresee it and provide them with (access to) it."
 	},
@@ -53,7 +58,7 @@ const tasks = [
 		title: "Annotate",
 		date: "2022-10-08",
 		priority: "High",
-		type: "feature",
+		type: "Feature",
 		status: "To do",
 		description: "The mockup provided can sometimes be confusing for developers. Especially if it contains much more content than the scope of the task described. Drop a couple of arrows, outlines and annotations here and there to emphasize what are the important parts of the mockup from the task requirements perspective."
 	},
@@ -61,7 +66,7 @@ const tasks = [
 		title: "Use charts and diagrams",
 		date: "2022-10-08",
 		priority: "High",
-		type: "feature",
+		type: "Feature",
 		status: "To do",
 		description: "While it is not always necessary, sometimes it might be beneficial to prepare a flowchart, a block diagram or some other kind of concept visualization that will render it easy for the developer to comprehend the task and its scope."
 	},
@@ -137,6 +142,9 @@ function displayTasks(){
 	todoColumn.innerHTML = "";
 	inProgressColumn.innerHTML = "";
 	doneColumn.innerHTML = "";
+	toDoCounter.innerHTML = 0;
+	inProgressCounter.innerHTML=0;
+	doneCounter.innerHTML=0;
 	c1 = 0;
 	c2 = 0;
 	c3 = 0;
@@ -166,7 +174,7 @@ function createTask(obj, indice)
 	}
 	btn.addEventListener('click', function(e){
 		e.preventDefault();
-		ind = getIndex(indice);
+		requestUpdateTask(indice);
 	})
 	btn.innerHTML = 
         `
@@ -185,20 +193,21 @@ function createTask(obj, indice)
 			</div>
 		</div>
         `;
-		
+		console.log(c1)
 	if (obj.status == "To do") {
 		todoColumn.appendChild(btn);
 		c1++;
-		toDoCounter.innerHTML=f;
+		console.log(c1)
+		toDoCounter.innerHTML=c1;
 	}else if(obj.status == "In Progress"){
 		inProgressColumn.appendChild(btn);
 		c2++
-		inProgressCounter.innerHTML=g;
+		inProgressCounter.innerHTML=c2;
 		
 	}else {
 		doneColumn.appendChild(btn);
 		c3++
-		doneCounter.innerHTML=z;
+		doneCounter.innerHTML=c3;
 	}
 }
 
@@ -228,7 +237,7 @@ saveBtn.addEventListener('click', function(e){
 		description : descriptionValue
 	}
 	addTask(task);
-    //alert(`${task.title}, ${task.type}, ${task.priority}, ${task.status}, ${task.date}, ${task.description}`);
+    alert(`${task.title}, ${task.type}, ${task.priority}, ${task.status}, ${task.date}, ${task.description}`);
 	createTask(task, indice = tasks.length-1);
 	form.reset();
 })
@@ -244,18 +253,22 @@ function addTask(task){
 
 
 
-function getIndex(i){
-	return i
+function requestUpdateTask(i){
+	const task = tasks[i];
+	modifiedTitle.value = task.title;
+	let typedd;
+	task.type == "Feature" ? document.querySelector('#feature-type').checked = true : document.querySelector('#bug-type').checked = true;
+	modifiedOptions.value = task.priority;
+	modifiedStatus.value = task.status;
+	modifiedDate.value = task.date;
+	modifiedTextArea.value = task.description;
+	ind = i;
 }
 
 function edit(){
-	const modifiedTitle = document.querySelector('#modified-name');
-	const modifiedTypes = document.querySelectorAll('#modified-type');
-	const modifiedOptions = document.querySelector('#modified-select');
-	const modifiedStatus = document.querySelector('#modifiedStatus-select');
-	const modifiedDate = document.querySelector('#modifiedDate-calender');
-	const modifiedTextArea = document.querySelector('#modifiedMessage-text');
+	var modifiedTypes = document.querySelectorAll('.modified-types');
 	const task = tasks[ind];
+	console.log(task)
 	let modifiedType;
     for(i = 0; i < modifiedTypes.length;i++){
 		if(modifiedTypes[i].checked == 1){
@@ -268,10 +281,18 @@ function edit(){
 	task.status = modifiedStatus.value;
 	task.date = modifiedDate.value;
 	task.description = modifiedTextArea.value;
+	//alert(`The task is Being updated with following values: \n ${task.title}, ${task.type}, ${task.priority}, ${task.status}, ${task.date}, ${task.description}`);
+	console.log('fff')
+	console.log(task)
+	console.log(tasks)
 	displayTasks();
 }
 
 function deletetask(){
 	tasks.splice(ind,1);
-	displayTasks()
+	console.log(c1)
+	//console.log(c2)
+	//console.log(c3)
+	alert(`Task Deleted`);
+	displayTasks();
 }
